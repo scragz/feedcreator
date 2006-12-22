@@ -2,9 +2,15 @@
 /***************************************************************************
 
 FeedCreator class v1.8.0-dev (development)
+http://feedcreator.org
+maintained by Mohammad Hafiz bin Ismail (info@mypapit.net)
+feedcreator.org
+
 originally (c) Kai Blankenhorn
 www.bitfolge.de
 kaib@bitfolge.de
+
+
 v1.3 work by Scott Reynen (scott@randomchaos.com) and Kai Blankenhorn
 v1.5 OPML support by Dirk Clemens
 v1.7.2-mod on-the-fly feed generation by Fabian Wolf (info@f2w.de)
@@ -1244,7 +1250,11 @@ class PIECreator01 extends FeedCreator {
 			$feed.= "    </author>\n";
 		}
 		$feed.= "    <generator>".FEEDCREATOR_VERSION."</generator>\n";
-		$feed.= "<link rel=\"self\" type=\"application/atom+xml\" href=\"". $this->syndicationURL . "\" />\n";
+		
+		// Mark D. Hamill fixes 
+		// Next line shows original and was commented out and replaced with the one below in order to remove a Feedvalidator.org warning
+		// $feed.= "<link rel=\"self\" type=\"application/atom+xml\" href=\"". $this->syndicationURL . "\" />\n";
+		$feed.= "<link rel=\"self\" type=\"application/atom+xml\" href=\"". htmlspecialchars($this->link). "\" />\n";
 		$feed.= $this->_createAdditionalElements($this->additionalElements, "    ");
 		for ($i=0;$i<count($this->items);$i++) {
 			$feed.= "    <entry>\n";
