@@ -480,10 +480,17 @@ class FeedCreator extends HtmlDescribable {
 	var $syndicationURL, $image, $language, $copyright, $pubDate, $lastBuildDate, $editor, $editorEmail, $webmaster, $category, $docs, $ttl, $rating, $skipHours, $skipDays;
 
 	/**
-	* The url of the external xsl stylesheet used to format the naked rss feed.
+	* The url of the external xsl stylesheet used to format the naked syndication feed.
 	* Ignored in the output when empty.
 	*/
 	var $xslStyleSheet = "";
+	
+	
+	/**
+	* The url of the external css stylesheet used to format the naked syndication feed.
+	* Ignored in the output when empty.
+		*/
+	var $cssStyleSheet = "";
 
 
 	/**
