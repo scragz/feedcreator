@@ -1,3 +1,5 @@
+<?php
+
 /*
 
 This demo is to illustrate how to use feedcreator 
@@ -14,25 +16,33 @@ and type (as in MIME-type)
 
 */
 
-<?php
-include ("include/feedcreator.class.php");
+
+include ("feedcreator.class.php");
 
 //define channel
-$rss = new UniversalFeedCreator();
-$rss->useCached();
-$rss->title="Personal News Site";
-$rss->description="daily news from me";
-$rss->link="http://mydomain.net/";
-$rss->syndicationURL="http://mydomain.net/$PHP_SELF";
+$feed = new UniversalFeedCreator();
+$feed->useCached();
+$feed->title="Personal News Site";
+$feed->description="daily news from me";
+$feed->link="http://mydomain.net/";
+$feed->syndicationURL="http://60.50.40.155:1000/fctest/demo.php?type=atom";
+$feed->category="Entertainment";
+$feed->copyright = "feedcreator (c) 2006";
 
 
 //channel items/entries
 $item = new FeedItem();
 $item->title = "test berita pertama";
 $item->link = "http://mydomain.net/news/somelinks.html";
-$item->description = "hahaha aku berjaya!";
+$item->guid = "urn:feeds-archive-org:validator:1";
+$item->description = "<p><strong>hahaha aku berjaya!</strong></p>";
 $item->source = "http://mydomain.net";
-$item->author = "my_email@mydomain.net";
+$item->author = "John Doe";
+$item->authorEmail = "JohnDoe@example.com";
+$item->authorURL = "http://example.com/profile/john";
+$item->descriptionHtmlSyndicated = true;
+$item->category="normal";
+
 
 
 //optional enclosure support
@@ -41,13 +51,24 @@ $item->enclosure->url='http://mydomain.net/news/picture.jpg';
 $item->enclosure->length="65905";
 $item->enclosure->type='image/jpeg';
 
-$rss->addItem($item);
+$feed->addItem($item);
 
 
 //Valid parameters are RSS0.91, RSS1.0, RSS2.0, PIE0.1 (deprecated),
 // MBOX, OPML, ATOM, ATOM1.0, ATOM0.3, HTML, JS
 
-$rss->outputFeed("ATOM1.0"); 
-//$rss->saveFeed("ATOM1.0", "news/feed.xml"); 
+
+
+if ($_GET['type'] == 'atom') {
+	$feed->outputFeed("ATOM1.0"); 
+	//$feed->saveFeed("ATOM1.0", "news/feed.xml"); 
+} else if ($_GET['type'] == 'atom0'){
+	$feed->outputFeed("ATOM0.3"); 
+} else if ($_GET['type'] == 'rss2.0'){
+	$feed->outputFeed("RSS2.0"); 
+}  else  {
+	$feed->outputFeed("RSS"); 
+}
+
 
 ?>

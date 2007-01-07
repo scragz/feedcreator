@@ -2,8 +2,18 @@ Changelog:
 v1.8.0-ppt 18-12-06
 	fixed RFC822 conversion GMT bug
 	modifies _setMIME() function for DynamicMime (KosherJava)
-	change rss default encoding to utf-8
+	change RSS and ATOM default encoding to UTF-8
 	TIME_ZONE defaulted to GMT
+	add <rights>,<category> optional tags to ATOM1.0
+	add <content> tag for HTML-content for ATOM
+	ATOM <summary> tag contains only text-description
+	ATOM 1.0 now supports authorEmail and authorURL feed item
+	fixed RSS2.0 <author> email/name conflicts
+	fixed ATOM "descriptionHtmlSyndicated=true" bug
+	RSS 0.91,RSS1.0,ATOM 0.3 are deprecated
+	
+		
+	
 
 
 v1.7.2-ppt	11-21-05
