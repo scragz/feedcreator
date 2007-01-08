@@ -11,6 +11,7 @@ v1.8.0-ppt 18-12-06
 	fixed RSS2.0 <author> email/name conflicts
 	fixed ATOM "descriptionHtmlSyndicated=true" bug
 	RSS 0.91,RSS1.0,ATOM 0.3 are deprecated
+	fix <guid> issue
 	
 		
 	

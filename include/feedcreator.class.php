@@ -1142,7 +1142,14 @@ class PIECreator01 extends FeedCreator {
 			$itemDate = new FeedDate($this->items[$i]->date);
 			$feed.= "        <published>".htmlspecialchars($itemDate->iso8601())."</published>\n";
 			$feed.= "        <updated>".htmlspecialchars($itemDate->iso8601())."</updated>\n";
-			$feed.= "        <id>".htmlspecialchars($this->items[$i]->guid)."</id>\n";
+			
+			
+			$tempguid = $this->items[$i]->link;
+			if ($this->items[$i]->guid!="") {
+				$tempguid = $this->items[$i]->guid;
+			}
+			
+			$feed.= "        <id>". htmlspecialchars($tempguid)."</id>\n";
 			$feed.= $this->_createAdditionalElements($this->items[$i]->additionalElements, "        ");
 			if ($this->items[$i]->author!="") {
 				$feed.= "        <author>\n";
@@ -1161,24 +1168,29 @@ class PIECreator01 extends FeedCreator {
 			if ($this->category!="") {
 								$feed.= "        <category term=\"" . htmlspecialchars($this->items[$i]->category) . "\" />\n";
 			}
+			
 			if ($this->items[$i]->description!="") {
-				$feed.= "        <summary>".htmlspecialchars( strip_tags($this->items[$i]->description) )."</summary>\n";
+				
 			
 			/* 
 			 * ATOM should have content and summary tags, however this implementation may be inaccurate
 			 */
-			 	$tempdesc = strip_tags($this->items[$i]->description);
+			 	$tempdesc = htmlspecialchars( trim(strip_tags($this->items[$i]->description)));
 			 	$temptype="";
 				
-				if($this->descriptionHtmlSyndicated){
-					$temptype="type=\"html\"";
-					$tempdesc = $this->items[$i]->description;
+				if ($this->items[$i]->descriptionHtmlSyndicated){
+					$temptype=" type=\"html\"";
+					$tempdesc = $this->items[$i]->getDescription();
 					
 				}
 				
-				$feed.= "        <content ". $temptype . ">".htmlspecialchars( $tempdesc )."</content>\n";
+				$feed.= "        <content". $temptype . ">". $tempdesc ."</content>\n";
 				
-				
+				$feed.= "        <summary". $temptype . ">". $tempdesc ."</summary>\n";
+			} else {
+			
+				$feed.= "	 <summary>no summary</summary>\n";
+			
 			}
 
 			if ($this->items[$i]->enclosure != NULL) {
