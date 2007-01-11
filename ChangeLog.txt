@@ -1,5 +1,5 @@
 Changelog:
-v1.8.0-ppt 18-12-06
+v1.8.0  11-01-06
 	fixed RFC822 conversion GMT bug
 	modifies _setMIME() function for DynamicMime (KosherJava)
 	change RSS and ATOM default encoding to UTF-8
@@ -11,7 +11,12 @@ v1.8.0-ppt 18-12-06
 	fixed RSS2.0 <author> email/name conflicts
 	fixed ATOM "descriptionHtmlSyndicated=true" bug
 	RSS 0.91,RSS1.0,ATOM 0.3 are deprecated
-	fix <guid> issue
+	fixed RSS 2.0 <guid> issue.
+	fixed OPML version and xmlURL issue;
+	add $enclosure->languange, $enclosure->title for ATOM 1.0
+	add $feed->generator, to change the feed generator text
+	
+
 	
 		
 	
