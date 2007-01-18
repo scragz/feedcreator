@@ -16,6 +16,15 @@ v1.8.0  11-01-06
 	add $enclosure->languange, $enclosure->title for ATOM 1.0
 	add $feed->generator, to change the feed generator text
 	
+	fixed RSS pubDate time() bug
+	fixed duplicated RSS <guid> bug
+	removed ATOM <content> tag
+	add $categoryTerm for <category> tags - ATOM scheme, and RSS domain;
+	additional-element doesn't appear on RSS 0.91
+	add support for additional namespace via addNamespace function
+	
+	
+	
 
 	
 		
