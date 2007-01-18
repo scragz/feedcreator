@@ -333,10 +333,6 @@ class UniversalFeedCreator extends FeedCreator {
 				$this->_feed = new JSCreator();
 				break;
 			
-			case "PODCAST":
-				$this->_feed = new PodcastCreator();
-				break;
-
 			default:
 				$this->_feed = new RSSCreator091();
 				break;
@@ -941,6 +937,7 @@ class RSSCreator091 extends FeedCreator {
 	function RSSCreator091() {
 		$this->_setRSSVersion("0.91");
 		$this->contentType = "application/rss+xml";
+		
 	}
 
 	/**
@@ -1083,15 +1080,15 @@ class RSSCreator091 extends FeedCreator {
 			}
 
 			if ($this->RSSVersion == "2.0" && $this->items[$i]->enclosure != NULL)
-				{
-				                $feed.= "            <enclosure url=\"";
-				                $feed.= $this->items[$i]->enclosure->url;
-				                $feed.= "\" length=\"";
-				                $feed.= $this->items[$i]->enclosure->length;
-				                $feed.= "\" type=\"";
-				                $feed.= $this->items[$i]->enclosure->type;
-				                $feed.= "\"/>\n";
-		            	}
+			{
+				$feed.= "            <enclosure url=\"";
+				$feed.= $this->items[$i]->enclosure->url;
+				$feed.= "\" length=\"";
+				$feed.= $this->items[$i]->enclosure->length;
+				$feed.= "\" type=\"";
+				$feed.= $this->items[$i]->enclosure->type;
+				$feed.= "\"/>\n";
+		        }
 
 
 
