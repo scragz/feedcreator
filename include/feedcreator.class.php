@@ -1051,7 +1051,7 @@ class RSSCreator091 extends FeedCreator {
 			}
 			*/
 			if ($this->items[$i]->category!="") {
-				$feed.= "            <category";
+				$feed.= "            <category ";
 
 				if (!empty($this->items[$i]->categoryScheme)) {
 
