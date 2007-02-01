@@ -1268,7 +1268,7 @@ class PIECreator01 extends FeedCreator {
 				   $feed.=" scheme=\"".htmlspecialchars($this->items[$i]->categoryScheme)."\" ";
 				}
 
-				$feed.="term=\"" . htmlspecialchars($this->items[$i]->category) . "\" />\n";
+				$feed.=" term=\"" . htmlspecialchars($this->items[$i]->category) . "\" />\n";
 			}
 
 			if ($this->items[$i]->description!="") {
